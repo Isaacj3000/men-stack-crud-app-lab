@@ -1,5 +1,3 @@
-const { type } = require('os')
-
 const carSchema = new mongoose.Schema({
     name: { type: String, required: true},
     Description: { type: String, required: true },
