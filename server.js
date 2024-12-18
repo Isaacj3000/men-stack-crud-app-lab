@@ -14,9 +14,13 @@ const path = require('path');
 require('./configs/database');
 
 // GET /
-app.get("/", async(req, res) => {
+app.get("/", async (req, res) => {
     res.render("index.ejs");
 })
+app.get("/cars", async (req, res) =>{
+    res.render("new.ejs")
+})
+
 
 
 
