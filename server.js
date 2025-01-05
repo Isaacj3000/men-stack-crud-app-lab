@@ -15,7 +15,10 @@ require('./configs/database');
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
 
+
+// +++++++++++++++++
 // Middleware
+// +++++++++++++++++
 app.use(morgan('dev')); // Enable logging
 app.use(methodOverride('_method')); // Support method override
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
@@ -25,13 +28,12 @@ app.get("/", async (req, res) => {
     res.render("index.ejs");
 });
 
-app.get("/cars/", async (req, res) => {
-    res.render("new.ejs");
-});
+// Seed Route
+app.use("/", require('./routes/seed.js'));
 
-app.get("/cars/new", async (req, res) =>{
-    res.render("")
-})
+// Home Route
+app.use("/", require('./routes/cars'));
+
 
 // Error handling middleware (optional)
 // app.use((err, req, res, next) => {

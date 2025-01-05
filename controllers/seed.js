@@ -1,5 +1,6 @@
-const car = require('../models/car');
-const cars = require('../data/cars')
+const Car = require('../models/car');
+// const cars = require('../data/cars');
+const cars = require('../local_data/cars')
 
 
 
