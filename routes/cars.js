@@ -2,13 +2,11 @@ const router = require('express').Router();
 const carCtrl = require('../controllers/car');
 
 router.get('/cars', carCtrl.index);
-// router.get('/cars/new', carCtrl.newBook);
-// router.post('/cars', carCtrl.postBook);
-// router.get('/cars/:id', carCtrl.showBook);
-// router.get('/cars/:id/edit', carCtrl.editBook);
-// router.put('/cars/:id', carCtrl.updateBook);
-// router.delete('/cars/:id', carCtrl.deleteBook);
-
-
+router.get('/cars/new', carCtrl.newCar);
+router.post('/cars', carCtrl.postCar);
+router.get('/cars/:id', carCtrl.showCar);
+router.get('/cars/:id/edit', carCtrl.editCar);
+router.put('/cars/:id', carCtrl.updateCar);
+router.delete('/cars/:id', carCtrl.deleteCar);
 
 module.exports = router;
