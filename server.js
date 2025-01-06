@@ -31,8 +31,16 @@ app.get("/", async (req, res) => {
 // Seed Route
 app.use("/", require('./routes/seed.js'));
 
+// Auth Route 
+app.use('/', require('./routes/auth.js'))
+
 // Home Route
-app.use("/", require('./routes/cars'));
+app.use("/", require('./routes/home.js'));
+
+// Car Route
+app.use('/', require('./routes/cars.js'));
+
+
 
 
 // Error handling middleware (optional)
