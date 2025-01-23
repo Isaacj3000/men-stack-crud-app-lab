@@ -6,27 +6,45 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const app = express();
 const path = require('path');
+const session = require('express-session')
+const { connect } = require('http2');
+const { mongo } = require('mongoose');
+const MongoConnect = require('connect-mongo')
 
 // ==================
 // CONFIGURE MONGOOSE
 // ==================
 require('./configs/database');
 
-// Set EJS as the view engine
-app.set('view engine', 'ejs');
 
 
 // +++++++++++++++++
 // Middleware
 // +++++++++++++++++
-app.use(morgan('dev')); // Enable logging
-app.use(methodOverride('_method')); // Support method override
-app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
 
-// GET /
-app.get("/", async (req, res) => {
-    res.render("index.ejs");
-});
+
+app.use(morgan('dev')); // Enable logging
+app.use(express.urlencoded({ extended: false}))
+app.use(express.json())
+app.use(methodOverride('_method')); // Support method override
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoConnect.create({
+        mongoUrl: process.env.MONGODB_URI
+    }),
+    cookie: { secure: process.env.NODE_ENV === 'Production', httpOnly: true}
+}));
+
+// set EJS as the view engine
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+// // GET /
+// app.get("/", async (req, res) => {
+//     res.render("index.ejs");
+// });
 
 // Seed Route
 app.use("/", require('./routes/seed.js'));

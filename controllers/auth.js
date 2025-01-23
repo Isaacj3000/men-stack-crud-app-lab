@@ -33,15 +33,14 @@ async function signUpPost(req, res) {
         res.status(201).redirect('/');
 
     } catch (error) {
-        console.error('Error suring sign-up:', error)
+        console.error('Error during sign-up:', error)
         res.status(500).json({ message: "An Error occurred during sign-up. Please try again." })
     }
 }
 
 function signIn(req, res) {
-    res.render("auth/sign-in")
+    res.render('auth/sign-in')
 }
-
 async function signinPost(req, res) {
 
     try {

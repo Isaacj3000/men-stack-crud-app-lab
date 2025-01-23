@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Car</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Add your CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Edit Car</h1>
+        <nav>
+            <a href="/cars">Back to Car List</a>
+        </nav>
+    </header>
+    
+    <main>
+        <form action="/cars/<%= car._id %>?_method=PUT" method="POST">
+            <label for="brand">Brand:</label>
+            <input type="text" id="brand" name="brand" value="<%= car.brand %>" required>
+
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" value="<%= car.year %>" required>
+
+            <label for="type">Type:</label>
+            <input type="text" id="type" name="type" value="<%= car.type %>" required>
+
+            <label for="mileage">Mileage:</label>
+            <input type="text" id="mileage" name="mileage" value="<%= car.mileage %>" required>
+
+            <label for="image">Image URL:</label>
+            <input type="text" id="image" name="image" value="<%= car.image %>" required>
+
+            <button type="submit">Update Car</button>
+        </form>
+    </main>
+</body>
+</html>

@@ -3,4 +3,4 @@ const homeCtrl = require('../controllers/home');
 
 router.get('/', homeCtrl.index)
 
-module.exports = router
+module.exports = router;

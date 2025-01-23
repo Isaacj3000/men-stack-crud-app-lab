@@ -28,7 +28,7 @@ async function postCar(req, res) {
         res.status(201).redirect('/cars')
         
     } catch (error) {
-        console.error(errror.message);
+        console.error(error.message);
         res.status(500).send('Internal server error')
     }
 }
@@ -50,7 +50,7 @@ async function editCar(req, res) {
     try {
         const car = await Car.findById(req.params.id);
         if (car) {
-            res.render('Car/edit', {title: 'Edit Car', car });
+            res.render('cars/edit', {title: 'Edit Car', car });
         } else {
             res.status(404).render('404/notFound', { title: 'Car not Found! '})
         }
