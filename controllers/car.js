@@ -34,7 +34,7 @@ async function postCar(req, res) {
 }
 async function showCar(req, res) {
     try {
-        const car = await Car.findbyId(req.params.id);
+        const car = await Car.findById(req.params.id);
     if (car) {
         res.render('cars/show', { title: 'Car Details', car })
     } else {
@@ -64,7 +64,7 @@ async function updateCar(req, res) {
         const carId = parseInt(req.params.id);
         const { id } = req.params;
 
-        const updatedCar = await Car.findByIdAndUpdate(id, req.body)
+        const updatedCar = await Car.findByIdAndUpdate(id, req.body, { new: true});
         if (updatedCar) {
             res.status(200).redirect('/cars');
         } else {
@@ -89,6 +89,5 @@ async function deleteCar(req, res) {
         console.error(error.message);
         res.status(500).send("Internal Server Error!")
     }
-    res.redirect('/cars')
 }
 module.exports = { index, newCar, postCar, showCar, editCar, updateCar, deleteCar,}
